@@ -1,0 +1,109 @@
+.exchanges-page {
+  min-height: 100vh;
+  background: var(--bg-light);
+}
+
+.exchanges-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.welcome-section h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.welcome-section p {
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+
+.exchanges-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.exchange-card {
+  background: var(--bg-white);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  position: relative;
+}
+
+.exchange-card:hover:not(.disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-blue);
+}
+
+.exchange-card.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.exchange-logo-container {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  background: var(--bg-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.exchange-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.exchange-info {
+  flex: 1;
+}
+
+.exchange-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.exchange-info p {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.coming-soon {
+  background: var(--bg-light);
+  color: var(--text-muted);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.active-badge {
+  background: var(--green-light);
+  color: var(--primary-green);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
