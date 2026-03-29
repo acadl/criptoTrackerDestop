@@ -2,8 +2,8 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../App'
 import Header from '../components/Header'
 import './Exchanges.css'
-import { Html5QrcodeScanner } from 'html5-qrcode'
 import { useEffect, useState } from 'react'
+import CamModal from '../components/CamModal'
 
 
 const exchanges = [
@@ -23,43 +23,31 @@ const exchanges = [
   }
 ]
 
-function QRScanner({ onClose }) {
-  useEffect(() => {
-    const scanner = new Html5QrcodeScanner(
-      "reader",
-      { fps: 10, qrbox: 250 },
-      false
-    )
 
-    scanner.render(
-      (decodedText) => {
-        console.log("QR:", decodedText)
-        scanner.clear()
-        onClose()
-      },
-      (error) => {
-        // pode ignorar
-      }
-    )
-
-    return () => {
-      scanner.clear().catch(() => {})
-    }
-  }, [])
-
-  return <div id="reader" />
-}
 
 function Exchanges() {
   const navigate = useNavigate()
   const { user } = useAuth()
-  const [showScanner, setShowScanner] = useState(false)
+  const [showCamera, setShowCamera] = useState(false)
+
+  const [photos, setPhotos] = useState(() => {
+    const saved = localStorage.getItem('photos')
+    return saved ? JSON.parse(saved) : []
+  })
 
   const handleExchangeClick = (exchange) => {
     if (exchange.active) {
       navigate('/trading-pairs')
     }
   }
+
+  const handleCapture = (image) => {
+  const updated = [...photos, image]
+  setPhotos(updated)
+  localStorage.setItem('photos', JSON.stringify(updated))
+
+  navigate('/gallery')
+}
 
   return (
     <div className="exchanges-page">
@@ -93,21 +81,29 @@ function Exchanges() {
               )}
             </div>
           ))}
+          
         </div>
       </main>
-      <button onClick={() => setShowScanner(true)}>
-        Escanear QR Code
+      <div className="actions-container">
+       <button 
+        className="btn btn-primary"
+        onClick={() => setShowCamera(true)}
+      >
+        Abrir Câmera
       </button>
-      {showScanner && (
-        <div className="scanner-modal">
-          <div className="scanner-content">
-            <QRScanner onClose={() => setShowScanner(false)} />
-            
-            <button onClick={() => setShowScanner(false)}>
-              Fechar
-            </button>
-          </div>
-        </div>
+
+      <button 
+        className="btn btn-secondary"
+        onClick={() => navigate('/gallery')}
+      >
+        Galeria
+      </button>
+      </div>
+      {showCamera && (
+        <CamModal
+          onClose={() => setShowCamera(false)}
+          onCapture={handleCapture}
+        />
       )}
     </div>
   )

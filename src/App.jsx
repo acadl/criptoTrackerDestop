@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import Exchanges from './pages/Exchanges'
 import TradingPairs from './pages/TradingPairs'
 import OrderBook from './pages/OrderBook'
+import Gallery from './pages/Gallery'
 import './App.css'
 
 const AuthContext = createContext(null)
@@ -55,6 +56,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <OrderBook />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/gallery"
+            element={
+              <ProtectedRoute>
+                <Gallery />
               </ProtectedRoute>
             }
           />
