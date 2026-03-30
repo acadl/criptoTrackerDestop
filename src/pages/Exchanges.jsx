@@ -15,11 +15,11 @@ const exchanges = [
     active: true
   },
   {
-    id: 'mercado-bitcoin',
-    name: 'Mercado Bitcoin',
-    description: 'A maior corretora de criptomoedas da America Latina',
-    logo: 'https://images.vexels.com/media/users/3/262111/isolated/lists/317336a6a32b6eb818a39f0fbf4d045b-criptomoeda-de-negocios-bitcoin.png',
-    active: false
+    id: 'bybit',
+    name: 'Bybit',
+    description: 'Troque o mundo Bit Bybit',
+    logo: 'https://brandlogos.net/wp-content/uploads/2022/09/bybit-logo_brandlogos.net_viubj-512x512.png',
+    active: true
   }
 ]
 
@@ -37,7 +37,7 @@ function Exchanges() {
 
   const handleExchangeClick = (exchange) => {
     if (exchange.active) {
-      navigate('/trading-pairs')
+      navigate(`/trading-pairs/${exchange.id}`)
     }
   }
 

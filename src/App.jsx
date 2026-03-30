@@ -43,22 +43,22 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/trading-pairs"
-            element={
-              <ProtectedRoute>
-                <TradingPairs />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/orderbook/:symbol"
-            element={
-              <ProtectedRoute>
-                <OrderBook />
-              </ProtectedRoute>
-            }
-          />
+         <Route
+          path="/trading-pairs/:exchange" 
+          element={
+            <ProtectedRoute>
+              <TradingPairs />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/orderbook/:exchange/:symbol" 
+          element={
+            <ProtectedRoute>
+              <OrderBook />
+            </ProtectedRoute>
+          }
+        />
           <Route
             path="/gallery"
             element={
